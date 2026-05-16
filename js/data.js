@@ -109,7 +109,7 @@ const dataUndangan = {
     // 9. PENUTUP
     penutup: {
         teksBawah: "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.\n\n",
-        salam: "Wassalamu'alaikum Warahmatullahi Wabarakatuh\\nn",
+        salam: "Wassalamu'alaikum Warahmatullahi Wabarakatuh\n",
         terimaKasih: "Kami yang berbahagia,"
     }
 };
