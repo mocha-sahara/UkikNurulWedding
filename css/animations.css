@@ -1,9 +1,11 @@
 /* ==========================================
    FILE ANIMASI (animations.css)
-   Memberikan efek visual yang halus dan elegan
+   Memberikan efek visual yang halus, elegan, dan interaktif
    ========================================== */
 
-/* --- 1. KEYFRAMES (Definisi Animasi) --- */
+/* ==========================================
+   1. KEYFRAMES (Definisi Animasi Dasar)
+   ========================================== */
 
 /* Efek muncul dari bawah ke atas dengan halus */
 @keyframes fadeInUp {
@@ -27,7 +29,7 @@
     }
 }
 
-/* Efek melayang perlahan untuk ornamen */
+/* Efek melayang perlahan untuk ornamen (kiri-kanan/atas-bawah natural) */
 @keyframes float {
     0% {
         transform: translateY(0px) rotate(0deg);
@@ -53,19 +55,12 @@
     }
 }
 
-/* Efek putaran lambat (cocok untuk background atau cahaya memutar) */
-@keyframes spinSlow {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
 
-/* --- 2. PENERAPAN ANIMASI KE CLASS HTML --- */
+/* ==========================================
+   2. PENERAPAN ANIMASI PADA COVER (AMPLOP)
+   ========================================== */
 
-/* Menganimasikan konten di halaman depan (Cover) */
+/* Menganimasikan teks di halaman depan (Cover) agar muncul bergantian */
 .cover-content .subtitle {
     animation: fadeIn 2s ease-out forwards;
 }
@@ -91,10 +86,15 @@
 }
 
 .ornament.top-right {
-    animation: float 6s ease-in-out infinite reverse; /* Arah sebaliknya agar natural */
+    animation: float 6s ease-in-out infinite reverse; /* Arah sebaliknya agar lebih natural */
 }
 
-/* Efek pada Konten Utama saat undangan dibuka */
+
+/* ==========================================
+   3. ANIMASI INTERAKTIF (HOVER & MUSIK)
+   ========================================== */
+
+/* Efek pada Konten Utama saat undangan pertama kali dibuka */
 #main-content {
     animation: fadeIn 1.5s ease-in;
 }
@@ -104,7 +104,7 @@
     animation: pulseGold 2.5s infinite;
 }
 
-/* Memberikan sedikit transisi halus pada bingkai foto saat di-hover */
+/* Memberikan sedikit transisi halus pada bingkai foto saat disentuh/hover */
 .foto-frame {
     transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
@@ -121,5 +121,68 @@
 
 .acara-card:hover {
     transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.08); /* Sedikit lebih terang saat di-hover */
+}
+
+
+/* ==========================================
+   4. ANIMASI SCROLL REVEAL (Diatur oleh JS)
+   ========================================== */
+
+/* Kelas dasar untuk elemen yang disembunyikan sebelum masuk layar monitor */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s cubic-bezier(0.5, 0, 0, 1); /* Transisi kurva yang sangat mulus dan elegan */
+}
+
+/* Kelas yang akan ditambahkan oleh JS secara otomatis saat elemen terlihat di layar */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ==========================================
+   5. EFEK PARTIKEL DEBU EMAS JATUH
+   ========================================== */
+
+/* Wadah transparan tak terlihat yang menutupi seluruh layar */
+#particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Sangat Penting: Agar partikel tidak menghalangi tamu mengeklik tombol */
+    z-index: 998; /* Di bawah kontrol musik, tapi di atas background */
+    overflow: hidden;
+}
+
+/* Bentuk dasar dari setiap butiran emas */
+.particle {
+    position: absolute;
+    background-color: var(--gold-luxury);
+    border-radius: 50%;
+    opacity: 0;
+    box-shadow: 0 0 5px var(--gold-light); /* Efek cahaya menyala */
+    animation: fall linear forwards;
+}
+
+/* Animasi jatuhnya butiran emas dari atas ke bawah */
+@keyframes fall {
+    0% {
+        transform: translateY(-10px) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8; /* Muncul perlahan saat mulai turun */
+    }
+    90% {
+        opacity: 0.6; /* Mulai meredup sebelum menyentuh bawah */
+    }
+    100% {
+        transform: translateY(100vh) translateX(30px); /* Jatuh sedikit miring seperti tertiup angin pelan */
+        opacity: 0;
+    }
 }
