@@ -237,11 +237,11 @@ button, .btn-primary, .btn-outline {
     position: relative;
     z-index: 2;
     text-align: center;
-    background: rgba(10, 25, 49, 0.6); 
+    /*background: rgba(10, 25, 49, 0.6); 
     padding: 30px 40px;
     border-radius: 20px;
     border: 1px solid rgba(212, 175, 55, 0.5); 
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);*/
     
     /* Mulanya disembunyikan untuk efek animasi masuk */
     opacity: 0; 
