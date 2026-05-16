@@ -188,12 +188,26 @@ button, .btn-primary, .btn-outline {
 /* ==========================================================
    BAGIAN 2: KONTEN UTAMA & BACKGROUND PARALLAX
    ========================================================== */
+/* --- LATAR BELAKANG GABUNGAN UNTUK KONTEN UNDANGAN --- */
 #main-content {
-    background-image: url('../assets/images/bg.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; /* Efek diam saat di-scroll */
+    /* Latar belakang gabungan: bg.jpg (biru polos) di atas, bg-tekstur-biru.jpg di bawah */
+    background: 
+        url('../assets/images/bg.jpg') center center / cover no-repeat,
+        url('../assets/images/bg-tekstur-biru.jpg') center center / cover no-repeat;
+    
+    /* Terapkan efek parallax (diam saat di-scroll) untuk kedua latar belakang */
+    background-attachment: fixed, fixed;
+    
     position: relative;
+}
+
+/* Overlay gelap khusus untuk area konten agar teks emas/putih tetap terbaca jelas */
+#main-content::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10, 25, 49, 0.75); /* Transparansi warna Navy */
+    z-index: 0;
 }
 
 /* Overlay gelap khusus untuk area konten agar teks tetap terbaca */
