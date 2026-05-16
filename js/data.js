@@ -6,8 +6,8 @@
 const dataUndangan = {
     // 1. PENGATURAN UMUM & MUSIK
     umum: {
-        judulWeb: "The Wedding of ukik & nurul",
-        deskripsiWeb: "Undangan Pernikahan ukik & nurul",
+        judulWeb: "The Wedding of okik & nurul",
+        deskripsiWeb: "Undangan Pernikahan okik & nurul",
         audioLatar: "src=https://ukik-nurul-wedding.vercel.app/assets/audio/lagu.MP3", // Path ke file lagu
         putarOtomatis: true
     },
@@ -25,7 +25,7 @@ const dataUndangan = {
             namaPanggilan: "Okik  ",
             namaAyah: "Bpk. Heri Susanto",
             namaIbu: "Ibu Nanik",
-            foto: "assets/images/ukik.jpg",
+            foto: "assets/images/okik.jpg",
             instagram: "https://instagram.com/nuristiana010" 
         },
         wanita: {
@@ -81,13 +81,13 @@ const dataUndangan = {
         rekening: [
             {
                 bank: "BCA",
-                atasNama: "Nama Lengkap Pria",
+                atasNama: "Okik Aris Setiawan",
                 nomorRekening: "1234567890",
                 qrCode: "assets/images/qrcode/qr-bca-pria.png"
             },
             {
                 bank: "Bank Mandiri",
-                atasNama: "Imroatus",
+                atasNama: "Okik Aris Setiawan",
                 nomorRekening: "0987654321",
                 qrCode: "assets/images/qrcode/qr-mandiri-wanita.png"
             }
