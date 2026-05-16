@@ -13,7 +13,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = dataUndangan;
 
     // ---------------------------------------------------------
-    // 1. INJEKSI DATA KE HTML (MENGISI KONTEN DINAMIS)
+    // 1. FITUR NAMA TAMU DINAMIS DARI URL (?to=Nama+Tamu)
+    // ---------------------------------------------------------
+    const urlParams = new URLSearchParams(window.location.search);
+    const tamuDariUrl = urlParams.get('to');
+    const elemenNamaTamu = document.getElementById('nama-tamu');
+
+    if (elemenNamaTamu) {
+        if (tamuDariUrl) {
+            // Jika ada parameter ?to= di link, tampilkan namanya
+            elemenNamaTamu.innerText = tamuDariUrl;
+        } else {
+            // Jika link dibuka biasa tanpa ?to=, tampilkan default
+            elemenNamaTamu.innerText = "Tamu Undangan"; 
+        }
+    }
+
+    // ---------------------------------------------------------
+    // 2. INJEKSI DATA KE HTML (MENGISI KONTEN DINAMIS)
     // ---------------------------------------------------------
     
     // Title Web
@@ -23,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('cover-nama-pasangan').innerText = `${data.mempelai.pria.namaPanggilan} & ${data.mempelai.wanita.namaPanggilan}`;
     document.getElementById('cover-tanggal').innerText = data.acara.akad.hariTanggal;
 
-    // Video Intro Overlay (Menuliskan nama Ukik & Nurul secara dinamis)
+    // Video Intro Overlay (Menuliskan nama secara dinamis)
     const introNamaEl = document.getElementById('intro-nama-pasangan');
     if(introNamaEl) {
         introNamaEl.innerText = `${data.mempelai.pria.namaPanggilan} & ${data.mempelai.wanita.namaPanggilan}`;
@@ -67,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ---------------------------------------------------------
-    // 2. RENDER HADIAH DIGITAL (REKENING & KADO)
+    // 3. RENDER HADIAH DIGITAL (REKENING & KADO)
     // ---------------------------------------------------------
     document.getElementById('teks-pengantar-hadiah').innerText = data.hadiahDigital.teksPengantar;
     
@@ -97,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ---------------------------------------------------------
-    // 3. LOGIKA BUKA UNDANGAN, MUSIK & VIDEO MOTION
+    // 4. LOGIKA BUKA UNDANGAN, MUSIK & VIDEO MOTION
     // ---------------------------------------------------------
     const btnBuka = document.getElementById('btn-buka-undangan');
     const coverSection = document.getElementById('cover');
@@ -112,21 +129,21 @@ document.addEventListener('DOMContentLoaded', () => {
     let isPlaying = false;
 
     btnBuka.addEventListener('click', () => {
-        // Efek cover digeser ke atas
+        // LANGSUNG PUTAR MUSIK SAAT DIKLIK (Tanpa Jeda)
+        if (data.umum.putarOtomatis) {
+            audio.play().catch(e => console.log("Gagal memutar audio: ", e));
+            isPlaying = true;
+            iconMusik.classList.remove('fa-music');
+            iconMusik.classList.add('fa-pause');
+        }
+
+        // EFEK COVER BERGESER
         coverSection.style.transform = 'translateY(-100vh)';
         coverSection.style.transition = 'transform 1s ease-in-out';
         
         setTimeout(() => {
             coverSection.style.display = 'none';
             mainContent.style.display = 'block';
-            
-            // Putar lagu background
-            if (data.umum.putarOtomatis) {
-                audio.play().catch(e => console.log("Autoplay diblokir browser"));
-                isPlaying = true;
-                iconMusik.classList.remove('fa-music');
-                iconMusik.classList.add('fa-pause');
-            }
             
             // Putar video motion
             if (motionVideo) {
@@ -155,13 +172,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ---------------------------------------------------------
-    // 4. LOGIKA OVERLAY VIDEO (Muncul 1 Detik Sebelum Selesai)
+    // 5. LOGIKA OVERLAY VIDEO (Muncul 2 Detik Sebelum Selesai)
     // ---------------------------------------------------------
     if (motionVideo && videoOverlay) {
         let overlayShown = false; 
 
         motionVideo.addEventListener('timeupdate', () => {
-            // Jika sisa waktu video kurang dari atau sama dengan 1 detik
+            // Jika sisa waktu video kurang dari atau sama dengan 2 detik
             if (motionVideo.duration > 0 && !overlayShown) {
                 if (motionVideo.duration - motionVideo.currentTime <= 2) {
                     videoOverlay.classList.add('show-overlay');
@@ -181,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ---------------------------------------------------------
-    // 5. LOGIKA COUNTDOWN (HITUNG MUNDUR)
+    // 6. LOGIKA COUNTDOWN (HITUNG MUNDUR)
     // ---------------------------------------------------------
     const targetDate = new Date(data.acara.akad.tanggalCountdown).getTime();
 
@@ -210,9 +227,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ---------------------------------------------------------
-    // 6. SCROLL REVEAL ANIMATION (Muncul perlahan saat di-scroll)
+    // 7. SCROLL REVEAL ANIMATION (Muncul perlahan saat di-scroll)
     // ---------------------------------------------------------
-    const elementsToReveal = document.querySelectorAll('.section-title, .mempelai-card, .acara-card, .quote-text, .divider');
+    const elementsToReveal = document.querySelectorAll('.section-title, .mempelai-card, .acara-card, .quote-text, .divider, .box-mewah');
+    // Pastikan box-mewah juga kena efek animasi
     elementsToReveal.forEach(el => el.classList.add('reveal'));
 
     const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -237,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ---------------------------------------------------------
-    // 7. EFEK PARTIKEL EMAS JATUH
+    // 8. EFEK PARTIKEL EMAS JATUH
     // ---------------------------------------------------------
     const particleContainer = document.createElement('div');
     particleContainer.id = 'particles-container';
@@ -276,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ---------------------------------------------------------
-// 8. FUNGSI GLOBAL (Bisa dipanggil langsung dari HTML)
+// 9. FUNGSI GLOBAL (Bisa dipanggil langsung dari HTML)
 // ---------------------------------------------------------
 
 // Fungsi untuk menyalin nomor rekening ke clipboard
