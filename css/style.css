@@ -1,0 +1,447 @@
+/* ==========================================
+   FILE DESAIN UTAMA (style.css)
+   Tema: Biru Mewah & Elegan (Navy & Gold)
+   ========================================== */
+
+/* --- VARIABEL WARNA & FONT --- */
+:root {
+    --navy-blue: #0A1931;      /* 60% - Dominan */
+    --gold-luxury: #D4AF37;    /* 30% - Sekunder */
+    --gold-light: #F3E5AB;     
+    --ice-blue: #E0E7FF;       /* 10% - Aksen */
+    --white: #FFFFFF;
+    
+    --font-utama: 'Playfair Display', serif;
+    --font-latin: 'Great Vibes', cursive;
+}
+
+/* --- RESET DASAR --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-utama);
+    background-color: var(--navy-blue);
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- TYPOGRAPHY UTAMA --- */
+.font-latin {
+    font-family: var(--font-latin);
+    font-weight: normal;
+}
+
+.gold-text {
+    color: var(--gold-luxury);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+/* --- TOMBOL --- */
+button, .btn-primary, .btn-outline {
+    font-family: var(--font-utama);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: var(--gold-luxury);
+    color: var(--navy-blue);
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+    margin-top: 20px;
+}
+
+.btn-primary:hover {
+    background-color: var(--gold-light);
+    transform: translateY(-3px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--gold-luxury);
+    border: 1px solid var(--gold-luxury);
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.btn-outline:hover {
+    background: var(--gold-luxury);
+    color: var(--navy-blue);
+}
+
+/* --- KONTROL MUSIK MENGAMBANG --- */
+.floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(10, 25, 49, 0.8);
+    border: 2px solid var(--gold-luxury);
+    color: var(--gold-luxury);
+    font-size: 1.2rem;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+/* --- BAGIAN 1: COVER (AMPLOP DIGITAL) --- */
+.section-cover {
+    height: 100vh;
+    width: 100vw;
+    background-image: url('../assets/images/bg-tekstur-biru.jpg');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Overlay agar teks lebih terbaca */
+.section-cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10, 25, 49, 0.6);
+    z-index: 1;
+}
+
+.cover-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
+
+.ornament {
+    position: absolute;
+    z-index: 2;
+    width: 250px;
+    max-width: 40vw;
+}
+
+.top-left { top: 0; left: 0; }
+.top-right { top: 0; right: 0; }
+
+.ornament img {
+    width: 100%;
+    height: auto;
+}
+
+.cover-content .subtitle {
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+}
+
+.cover-content h1 {
+    font-size: 4.5rem;
+    color: var(--gold-luxury);
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    margin: 10px 0;
+}
+
+.cover-content .date-text {
+    font-size: 1.2rem;
+    color: var(--ice-blue);
+    margin-bottom: 30px;
+}
+
+/* --- STRUKTUR LAYOUT UTAMA --- */
+.section-pad {
+    padding: 80px 20px;
+    position: relative;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.bg-pattern {
+    background-image: url('../assets/images/bg-tekstur-biru.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efek parallax sederhana */
+}
+
+.bg-pattern::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10, 25, 49, 0.85); /* Menggelapkan pattern */
+}
+
+.bg-pattern .container {
+    position: relative;
+    z-index: 2;
+}
+
+.section-title {
+    font-size: 3.5rem;
+    margin-bottom: 40px;
+}
+
+.divider {
+    width: 80%;
+    max-width: 300px;
+    margin: 0 auto 30px auto;
+    display: block;
+}
+
+/* --- KUTIPAN --- */
+.quote-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--ice-blue);
+    margin-bottom: 15px;
+}
+
+.quote-source {
+    font-weight: bold;
+    color: var(--gold-luxury);
+}
+
+/* --- MEMPELAI --- */
+.mempelai-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.mempelai-card {
+    flex: 1;
+    min-width: 250px;
+}
+
+.foto-frame {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px auto;
+    background-image: url('../assets/images/frame-foto-gold.png');
+    background-size: cover;
+    background-position: center;
+    padding: 20px; /* Jarak agar foto pas di dalam bingkai */
+    border-radius: 50%;
+}
+
+.foto-bulat {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.nama-mempelai {
+    font-size: 2.5rem;
+    color: var(--gold-light);
+    margin-bottom: 5px;
+}
+
+.ortu-text {
+    color: var(--ice-blue);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.ig-link {
+    color: var(--gold-luxury);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.dan-text {
+    font-size: 4rem;
+    margin: 0 20px;
+}
+
+/* --- ACARA & COUNTDOWN --- */
+.countdown-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.countdown-item {
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid var(--gold-luxury);
+    padding: 15px;
+    border-radius: 10px;
+    min-width: 80px;
+}
+
+.countdown-item span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--gold-luxury);
+    display: block;
+}
+
+.countdown-item p {
+    font-size: 0.8rem;
+    color: var(--ice-blue);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.acara-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.acara-card {
+    flex: 1;
+    min-width: 280px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+.gold-icon {
+    font-size: 2rem;
+    color: var(--gold-luxury);
+    margin-bottom: 15px;
+}
+
+.acara-card h3 {
+    font-size: 1.5rem;
+    color: var(--gold-light);
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.acara-card p {
+    margin-bottom: 10px;
+    color: var(--ice-blue);
+}
+
+.tempat-text {
+    margin-top: 15px;
+    font-weight: bold;
+    color: var(--white);
+    white-space: pre-line; /* Membaca enter dari JS */
+}
+
+/* --- HADIAH DIGITAL --- */
+.text-bantu {
+    color: var(--ice-blue);
+    margin-bottom: 30px;
+}
+
+.rekening-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.rekening-card {
+    background: rgba(10, 25, 49, 0.8);
+    border: 1px solid var(--gold-luxury);
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+}
+
+.qr-code {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 2px solid var(--gold-luxury);
+    border-radius: 10px;
+}
+
+.no-rek {
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 10px 0 5px 0;
+}
+
+.kado-box {
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px dashed var(--gold-luxury);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* --- PENUTUP --- */
+.salam-text {
+    font-size: 2rem;
+    margin: 20px 0;
+}
+
+.mt-2 {
+    margin-top: 20px;
+}
+
+/* --- RESPONSIVE DESIGN (Untuk Layar HP) --- */
+@media (max-width: 768px) {
+    .cover-content h1 {
+        font-size: 3.5rem;
+    }
+    
+    .dan-text {
+        width: 100%;
+        margin: 10px 0;
+    }
+    
+    .countdown-wrapper {
+        flex-wrap: wrap;
+    }
+    
+    .countdown-item {
+        min-width: calc(50% - 10px);
+    }
+    
+    .section-title {
+        font-size: 2.8rem;
+    }
+    
+    .ornament {
+        width: 180px;
+    }
+}

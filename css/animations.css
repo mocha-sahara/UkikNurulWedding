@@ -1,0 +1,125 @@
+/* ==========================================
+   FILE ANIMASI (animations.css)
+   Memberikan efek visual yang halus dan elegan
+   ========================================== */
+
+/* --- 1. KEYFRAMES (Definisi Animasi) --- */
+
+/* Efek muncul dari bawah ke atas dengan halus */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efek muncul perlahan (Fade In) */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Efek melayang perlahan untuk ornamen */
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(1deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+/* Efek denyutan cahaya emas untuk tombol/elemen penting */
+@keyframes pulseGold {
+    0% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+    }
+}
+
+/* Efek putaran lambat (cocok untuk background atau cahaya memutar) */
+@keyframes spinSlow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- 2. PENERAPAN ANIMASI KE CLASS HTML --- */
+
+/* Menganimasikan konten di halaman depan (Cover) */
+.cover-content .subtitle {
+    animation: fadeIn 2s ease-out forwards;
+}
+
+.cover-content h1 {
+    animation: fadeInUp 1.5s ease-out 0.5s forwards;
+    opacity: 0; /* Disembunyikan dulu sebelum animasi mulai */
+}
+
+.cover-content .date-text {
+    animation: fadeInUp 1.5s ease-out 1s forwards;
+    opacity: 0;
+}
+
+.cover-content .btn-primary {
+    animation: fadeInUp 1.5s ease-out 1.5s forwards, pulseGold 2s infinite 3s;
+    opacity: 0;
+}
+
+/* Menganimasikan Ornamen Bunga agar tampak bernapas/melayang */
+.ornament.top-left {
+    animation: float 6s ease-in-out infinite;
+}
+
+.ornament.top-right {
+    animation: float 6s ease-in-out infinite reverse; /* Arah sebaliknya agar natural */
+}
+
+/* Efek pada Konten Utama saat undangan dibuka */
+#main-content {
+    animation: fadeIn 1.5s ease-in;
+}
+
+/* Efek denyut pada tombol musik mengambang */
+.floating-btn {
+    animation: pulseGold 2.5s infinite;
+}
+
+/* Memberikan sedikit transisi halus pada bingkai foto saat di-hover */
+.foto-frame {
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.mempelai-card:hover .foto-frame {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+}
+
+/* Efek hover dinamis pada kartu acara */
+.acara-card {
+    transition: transform 0.4s ease, background 0.4s ease;
+}
+
+.acara-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+}

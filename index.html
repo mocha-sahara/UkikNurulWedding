@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Judul Web Default (Akan ditimpa oleh JS nanti) -->
+    <title>Undangan Pernikahan</title>
+
+    <!-- Memanggil Font Online dari Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Great Vibes untuk font sambung yang romantis, Playfair Display untuk font serif yang elegan -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Memanggil Icon Online dari FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Memanggil File CSS Internal -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+    <!-- ELEMEN AUDIO -->
+    <audio id="lagu-background" loop>
+        <source src="assets/audio/lagu-background.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- BAGIAN 1: COVER / AMPLOP DIGITAL (Tampil pertama kali) -->
+    <section id="cover" class="section-cover">
+        <div class="ornament top-left">
+            <img src="assets/images/bunga-sudut-kiri.png" alt="Ornamen Kiri">
+        </div>
+        <div class="ornament top-right">
+            <img src="assets/images/bunga-sudut-kanan.png" alt="Ornamen Kanan">
+        </div>
+
+        <div class="cover-content">
+            <p class="subtitle">THE WEDDING OF</p>
+            <!-- ID ini akan diisi otomatis oleh data.js -->
+            <h1 id="cover-nama-pasangan" class="font-latin">... & ...</h1>
+            <p id="cover-tanggal" class="date-text">...</p>
+            
+            <button id="btn-buka-undangan" class="btn-primary">
+                <i class="fas fa-envelope-open-heart"></i> Buka Undangan
+            </button>
+        </div>
+    </section>
+
+    <!-- BAGIAN 2: KONTEN UTAMA (Disembunyikan sampai tombol Buka Undangan diklik) -->
+    <main id="main-content" style="display: none;">
+
+        <!-- TOMBOL KONTROL MUSIK MENGAMBANG -->
+        <button id="btn-musik" class="floating-btn">
+            <i class="fas fa-music"></i>
+        </button>
+
+        <!-- SECTION KUTIPAN -->
+        <section id="kutipan" class="section-pad">
+            <div class="container text-center">
+                <img src="assets/images/divider-emas.png" alt="Pembatas" class="divider">
+                <p id="teks-kutipan" class="quote-text">"..."</p>
+                <p id="sumber-kutipan" class="quote-source">...</p>
+            </div>
+        </section>
+
+        <!-- SECTION PROFIL MEMPELAI -->
+        <section id="mempelai" class="section-pad bg-pattern">
+            <div class="container text-center">
+                <h2 class="section-title font-latin gold-text">Mempelai</h2>
+                <div class="mempelai-grid">
+                    
+                    <!-- Mempelai Pria -->
+                    <div class="mempelai-card">
+                        <div class="foto-frame">
+                            <!-- Bingkai gold ditempatkan menggunakan CSS background, fotonya di dalam -->
+                            <img id="foto-pria" src="" alt="Foto Pria" class="foto-bulat">
+                        </div>
+                        <h3 id="nama-pria" class="font-latin nama-mempelai">...</h3>
+                        <p id="ortu-pria" class="ortu-text">Putra dari ... & ...</p>
+                        <a id="ig-pria" href="#" target="_blank" class="ig-link"><i class="fab fa-instagram"></i> Instagram</a>
+                    </div>
+
+                    <h1 class="dan-text font-latin gold-text">&</h1>
+
+                    <!-- Mempelai Wanita -->
+                    <div class="mempelai-card">
+                        <div class="foto-frame">
+                            <img id="foto-wanita" src="" alt="Foto Wanita" class="foto-bulat">
+                        </div>
+                        <h3 id="nama-wanita" class="font-latin nama-mempelai">...</h3>
+                        <p id="ortu-wanita" class="ortu-text">Putri dari ... & ...</p>
+                        <a id="ig-wanita" href="#" target="_blank" class="ig-link"><i class="fab fa-instagram"></i> Instagram</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION ACARA & COUNTDOWN -->
+        <section id="acara" class="section-pad">
+            <div class="container text-center">
+                <img src="assets/images/divider-emas.png" alt="Pembatas" class="divider">
+                <h2 class="section-title font-latin gold-text">Rangkaian Acara</h2>
+                
+                <!-- Countdown Timer -->
+                <div class="countdown-wrapper">
+                    <div class="countdown-item">
+                        <span id="cd-hari">00</span>
+                        <p>Hari</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="cd-jam">00</span>
+                        <p>Jam</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="cd-menit">00</span>
+                        <p>Menit</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="cd-detik">00</span>
+                        <p>Detik</p>
+                    </div>
+                </div>
+
+                <!-- Kartu Acara -->
+                <div class="acara-grid">
+                    <div class="acara-card">
+                        <i class="fas fa-ring gold-icon"></i>
+                        <h3 id="nama-akad">Akad Nikah</h3>
+                        <p id="tanggal-akad"><i class="far fa-calendar-alt"></i> ...</p>
+                        <p id="waktu-akad"><i class="far fa-clock"></i> ...</p>
+                        <p id="tempat-akad" class="tempat-text">...</p>
+                        <a id="map-akad" href="#" target="_blank" class="btn-outline"><i class="fas fa-map-marked-alt"></i> Google Maps</a>
+                    </div>
+                    <div class="acara-card">
+                        <i class="fas fa-glass-cheers gold-icon"></i>
+                        <h3 id="nama-resepsi">Resepsi</h3>
+                        <p id="tanggal-resepsi"><i class="far fa-calendar-alt"></i> ...</p>
+                        <p id="waktu-resepsi"><i class="far fa-clock"></i> ...</p>
+                        <p id="tempat-resepsi" class="tempat-text">...</p>
+                        <a id="map-resepsi" href="#" target="_blank" class="btn-outline"><i class="fas fa-map-marked-alt"></i> Google Maps</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION HADIAH DIGITAL (Amplop & Kado) -->
+        <section id="hadiah" class="section-pad bg-pattern">
+            <div class="container text-center">
+                <h2 class="section-title font-latin gold-text">Wedding Gift</h2>
+                <p id="teks-pengantar-hadiah" class="text-bantu">...</p>
+                
+                <!-- Wadah rekening akan di-generate oleh JS agar bisa lebih dari 2 -->
+                <div id="wadah-rekening" class="rekening-grid">
+                    <!-- Rekening diisi via JS -->
+                </div>
+
+                <!-- Kirim Kado (Fisik) -->
+                <div id="wadah-kado" class="kado-box" style="display: none;">
+                    <h3><i class="fas fa-gift gold-icon"></i> Kirim Kado</h3>
+                    <p id="penerima-kado" class="bold-text">...</p>
+                    <p id="alamat-kado">...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION PENUTUP -->
+        <section id="penutup" class="section-pad">
+            <div class="container text-center">
+                <img src="assets/images/divider-emas.png" alt="Pembatas" class="divider">
+                <p id="teks-bawah">...</p>
+                <h3 id="salam-penutup" class="salam-text font-latin gold-text">...</h3>
+                <p id="ucapan-terimakasih">...</p>
+                <h2 id="nama-pasangan-penutup" class="font-latin gold-text mt-2">... & ...</h2>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- URUTAN SCRIPT SANGAT PENTING: Data dipanggil dulu, baru Logikanya -->
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
