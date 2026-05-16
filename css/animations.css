@@ -61,7 +61,8 @@
    ========================================== */
 
 /* Menganimasikan teks di halaman depan (Cover) agar muncul bergantian */
-.cover-content .subtitle {
+.cover-content .subtitle,
+.kepada-wrapper {
     animation: fadeIn 2s ease-out forwards;
 }
 
