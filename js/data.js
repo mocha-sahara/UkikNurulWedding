@@ -26,7 +26,7 @@ const dataUndangan = {
             namaAyah: "Bpk. Heri Susanto",
             namaIbu: "Ibu Nanik",
             foto: "assets/images/ukik.jpg",
-           /* instagram: "https://instagram.com/nuristiana010" */
+            instagram: "https://instagram.com/nuristiana010" 
         },
         wanita: {
             namaLengkap: "Nurul Dwi Indah Istiana, S.M.",
@@ -34,7 +34,7 @@ const dataUndangan = {
             namaAyah: "Bpk. Ekhwan Sunarto",
             namaIbu: "Ibu Hariyatun",
             foto: "assets/images/nurul.jpg",
-           /* instagram: "https://instagram.com/nuristiana010" */
+            instagram: "https://instagram.com/nuristiana010" 
         }
     },
 
@@ -108,8 +108,8 @@ const dataUndangan = {
 
     // 9. PENUTUP
     penutup: {
-        teksBawah: "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.\n",
-        salam: "Wassalamu'alaikum Warahmatullahi Wabarakatuh\n",
+        teksBawah: "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.\n\n",
+        salam: "Wassalamu'alaikum Warahmatullahi Wabarakatuh\\nn",
         terimaKasih: "Kami yang berbahagia,"
     }
 };
