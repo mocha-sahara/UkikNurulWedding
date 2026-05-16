@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         motionVideo.addEventListener('timeupdate', () => {
             // Jika sisa waktu video kurang dari atau sama dengan 1 detik
             if (motionVideo.duration > 0 && !overlayShown) {
-                if (motionVideo.duration - motionVideo.currentTime <= 1) {
+                if (motionVideo.duration - motionVideo.currentTime <= 2) {
                     videoOverlay.classList.add('show-overlay');
                     overlayShown = true; 
                 }
