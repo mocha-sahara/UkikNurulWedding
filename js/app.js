@@ -305,4 +305,18 @@ window.salinTeks = function(teks) {
         console.error('Gagal menyalin teks: ', err);
         alert("Gagal menyalin nomor rekening.");
     });
+// ---------------------------------------------------------
+    // ANTI JEDA LOOPING AUDIO
+    // ---------------------------------------------------------
+    audio.addEventListener('timeupdate', function() {
+        // Angka 0.4 berarti lagu akan dipaksa mengulang 0.4 detik sebelum benar-benar habis.
+        // Jika jedanya masih terasa, perbesar angkanya (misal: 0.6 atau 0.8)
+        const potongAkhir = 0.4; 
+        
+        if (this.duration > 0 && this.currentTime > this.duration - potongAkhir) {
+            // Angka 0.2 berarti lagu mulai memutar dari detik ke-0.2 (melewati hening di awal)
+            this.currentTime = 0.2; 
+            this.play();
+        }
+    });
 };
