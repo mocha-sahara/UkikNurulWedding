@@ -15,7 +15,7 @@ const dataUndangan = {
     // 2. KUTIPAN / AYAT (Opsional, biasa diletakkan sebelum profil)
     kutipan: {
         teks: "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.",
-        sumber: "QS. Ar-Rum: 21\n\n\n\n\n\n\n"
+        sumber: "QS. Ar-Rum: 21\n\n\n"
     },
 
     // 3. DATA MEMPELAI
