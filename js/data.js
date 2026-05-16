@@ -25,7 +25,7 @@ const dataUndangan = {
             namaPanggilan: "Okik  ",
             namaAyah: "Bpk. Heri Susanto",
             namaIbu: "Ibu Nanik",
-            foto: "assets/images/okik.jpg",
+            foto: "assets/images/okik.png",
             instagram: "https://instagram.com/nuristiana010" 
         },
         wanita: {
@@ -33,7 +33,7 @@ const dataUndangan = {
             namaPanggilan: "  Nurul",
             namaAyah: "Bpk. Ekhwan Sunarto",
             namaIbu: "Ibu Hariyatun",
-            foto: "assets/images/nurul.jpg",
+            foto: "assets/images/nurul.png",
             instagram: "https://instagram.com/nuristiana010" 
         }
     },
