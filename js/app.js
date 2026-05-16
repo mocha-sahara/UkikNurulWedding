@@ -1,6 +1,6 @@
 // ==========================================
 // FILE LOGIKA UTAMA (app.js)
-// Mengatur injeksi data, musik, dan countdown
+// Mengatur injeksi data, musik, video intro, countdown, dan animasi
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,6 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cover
     document.getElementById('cover-nama-pasangan').innerText = `${data.mempelai.pria.namaPanggilan} & ${data.mempelai.wanita.namaPanggilan}`;
     document.getElementById('cover-tanggal').innerText = data.acara.akad.hariTanggal;
+
+    // Video Intro Overlay (Menuliskan nama Ukik & Nurul secara dinamis)
+    const introNamaEl = document.getElementById('intro-nama-pasangan');
+    if(introNamaEl) {
+        introNamaEl.innerText = `${data.mempelai.pria.namaPanggilan} & ${data.mempelai.wanita.namaPanggilan}`;
+    }
 
     // Kutipan
     document.getElementById('teks-kutipan').innerText = `"${data.kutipan.teks}"`;
@@ -67,9 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const wadahRekening = document.getElementById('wadah-rekening');
     data.hadiahDigital.rekening.forEach(rek => {
-        // Membuat kartu rekening secara dinamis sesuai jumlah data di data.js
         const divCard = document.createElement('div');
-        divCard.className = 'rekening-card';
+        divCard.className = 'rekening-card reveal'; // Ditambah class reveal untuk animasi scroll
         divCard.innerHTML = `
             <img src="${rek.qrCode}" alt="QR ${rek.bank}" class="qr-code">
             <h4 class="gold-text">${rek.bank}</h4>
@@ -82,17 +87,17 @@ document.addEventListener('DOMContentLoaded', () => {
         wadahRekening.appendChild(divCard);
     });
 
-    // Menampilkan kado jika diaktifkan di data.js
     const kadoBox = document.getElementById('wadah-kado');
     if (data.hadiahDigital.kirimKado.aktif) {
         kadoBox.style.display = 'block';
+        kadoBox.classList.add('reveal'); // Ditambah class reveal
         document.getElementById('penerima-kado').innerText = `Penerima: ${data.hadiahDigital.kirimKado.namaPenerima}`;
         document.getElementById('alamat-kado').innerText = data.hadiahDigital.kirimKado.alamatLengkap;
     }
 
 
     // ---------------------------------------------------------
-    // 3. LOGIKA BUKA UNDANGAN & MUSIK
+    // 3. LOGIKA BUKA UNDANGAN, MUSIK & VIDEO MOTION
     // ---------------------------------------------------------
     const btnBuka = document.getElementById('btn-buka-undangan');
     const coverSection = document.getElementById('cover');
@@ -100,11 +105,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('lagu-background');
     const btnMusik = document.getElementById('btn-musik');
     const iconMusik = btnMusik.querySelector('i');
+    
+    const motionVideo = document.getElementById('motion-video');
+    const videoOverlay = document.getElementById('video-overlay');
 
     let isPlaying = false;
 
     btnBuka.addEventListener('click', () => {
-        // Efek slide ke atas atau memudar untuk cover
+        // Efek cover digeser ke atas
         coverSection.style.transform = 'translateY(-100vh)';
         coverSection.style.transition = 'transform 1s ease-in-out';
         
@@ -112,17 +120,23 @@ document.addEventListener('DOMContentLoaded', () => {
             coverSection.style.display = 'none';
             mainContent.style.display = 'block';
             
-            // Putar musik jika disetting true
+            // Putar lagu background
             if (data.umum.putarOtomatis) {
-                audio.play().catch(e => console.log("Autoplay diblokir browser, pengguna harus klik manual."));
+                audio.play().catch(e => console.log("Autoplay diblokir browser"));
                 isPlaying = true;
                 iconMusik.classList.remove('fa-music');
                 iconMusik.classList.add('fa-pause');
             }
             
-            // Mulai animasi scroll atau hal lainnya di sini
+            // Putar video motion
+            if (motionVideo) {
+                motionVideo.currentTime = 0; 
+                motionVideo.play().catch(e => console.log("Gagal memutar video: ", e));
+            }
+
+            // Pastikan scroll berada di paling atas melihat video
             window.scrollTo(0, 0);
-        }, 800); // Tunggu animasi selesai
+        }, 800); 
     });
 
     // Kontrol Tombol Musik
@@ -141,7 +155,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ---------------------------------------------------------
-    // 4. LOGIKA COUNTDOWN (HITUNG MUNDUR)
+    // 4. LOGIKA OVERLAY VIDEO (Muncul 1 Detik Sebelum Selesai)
+    // ---------------------------------------------------------
+    if (motionVideo && videoOverlay) {
+        let overlayShown = false; 
+
+        motionVideo.addEventListener('timeupdate', () => {
+            // Jika sisa waktu video kurang dari atau sama dengan 1 detik
+            if (motionVideo.duration > 0 && !overlayShown) {
+                if (motionVideo.duration - motionVideo.currentTime <= 1) {
+                    videoOverlay.classList.add('show-overlay');
+                    overlayShown = true; 
+                }
+            }
+        });
+
+        // Reset overlay jika video di-play ulang (opsional)
+        motionVideo.addEventListener('play', () => {
+            if (motionVideo.currentTime === 0) {
+                videoOverlay.classList.remove('show-overlay');
+                overlayShown = false;
+            }
+        });
+    }
+
+
+    // ---------------------------------------------------------
+    // 5. LOGIKA COUNTDOWN (HITUNG MUNDUR)
     // ---------------------------------------------------------
     const targetDate = new Date(data.acara.akad.tanggalCountdown).getTime();
 
@@ -149,20 +189,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const now = new Date().getTime();
         const distance = targetDate - now;
 
-        // Perhitungan waktu
         const hari = Math.floor(distance / (1000 * 60 * 60 * 24));
         const jam = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const menit = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const detik = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Render ke HTML
         if (distance > 0) {
             document.getElementById('cd-hari').innerText = hari.toString().padStart(2, '0');
             document.getElementById('cd-jam').innerText = jam.toString().padStart(2, '0');
             document.getElementById('cd-menit').innerText = menit.toString().padStart(2, '0');
             document.getElementById('cd-detik').innerText = detik.toString().padStart(2, '0');
         } else {
-            // Jika waktu sudah lewat
             clearInterval(updateCountdown);
             document.getElementById('cd-hari').innerText = "00";
             document.getElementById('cd-jam').innerText = "00";
@@ -171,13 +208,78 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 1000);
 
+
+    // ---------------------------------------------------------
+    // 6. SCROLL REVEAL ANIMATION (Muncul perlahan saat di-scroll)
+    // ---------------------------------------------------------
+    const elementsToReveal = document.querySelectorAll('.section-title, .mempelai-card, .acara-card, .quote-text, .divider');
+    elementsToReveal.forEach(el => el.classList.add('reveal'));
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, { 
+        threshold: 0.15, 
+        rootMargin: "0px 0px -50px 0px" 
+    });
+
+    elementsToReveal.forEach(el => revealObserver.observe(el));
+
+    // Observe elemen yang digenerate dinamis (seperti rekening)
+    setTimeout(() => {
+        const dynamicElements = document.querySelectorAll('.rekening-card, .kado-box');
+        dynamicElements.forEach(el => revealObserver.observe(el));
+    }, 500);
+
+
+    // ---------------------------------------------------------
+    // 7. EFEK PARTIKEL EMAS JATUH
+    // ---------------------------------------------------------
+    const particleContainer = document.createElement('div');
+    particleContainer.id = 'particles-container';
+    document.body.appendChild(particleContainer);
+
+    function createParticle() {
+        // Jangan jalankan jika masih di layar cover
+        if (coverSection.style.display !== 'none') return;
+
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Ukuran partikel acak (2px sampai 5px)
+        const size = Math.random() * 3 + 2; 
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Posisi mendatar acak
+        particle.style.left = `${Math.random() * 100}vw`;
+        
+        // Durasi jatuh acak
+        const duration = Math.random() * 7 + 5; 
+        particle.style.animationDuration = `${duration}s`;
+        
+        particleContainer.appendChild(particle);
+        
+        // Hapus partikel setelah selesai jatuh
+        setTimeout(() => {
+            particle.remove();
+        }, duration * 1000);
+    }
+
+    // Buat 1 partikel baru setiap 400 milidetik
+    setInterval(createParticle, 400);
+
 });
 
 // ---------------------------------------------------------
-// 5. FUNGSI GLOBAL (Bisa dipanggil dari tombol HTML)
+// 8. FUNGSI GLOBAL (Bisa dipanggil langsung dari HTML)
 // ---------------------------------------------------------
 
-// Fungsi untuk menyalin teks (nomor rekening) ke clipboard
+// Fungsi untuk menyalin nomor rekening ke clipboard
 window.salinTeks = function(teks) {
     navigator.clipboard.writeText(teks).then(() => {
         alert("Nomor rekening " + teks + " berhasil disalin!");
