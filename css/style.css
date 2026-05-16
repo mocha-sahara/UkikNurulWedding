@@ -122,7 +122,7 @@ button, .btn-primary, .btn-outline {
 .section-cover {
     height: 100vh;
     width: 100vw;
-    background-image: url('../assets/images/bg-tekstur-biru.jpg');
+    background-image: url('../assets/images/bg.jpg'); /* Menggunakan bg.jpg */
     background-size: cover;
     background-position: center;
     position: fixed;
@@ -185,29 +185,40 @@ button, .btn-primary, .btn-outline {
     margin-bottom: 30px;
 }
 
+/* --- STYLING NAMA TAMU DI COVER --- */
+.kepada-wrapper {
+    margin: 30px 0;
+    padding: 15px 30px;
+    background: rgba(10, 25, 49, 0.5); /* Latar belakang tipis agar nama stand-out */
+    border-radius: 10px;
+    border: 1px dashed var(--gold-luxury);
+    display: inline-block;
+    min-width: 250px;
+}
+
+.kepada-text {
+    font-size: 0.9rem;
+    color: var(--ice-blue);
+    margin-bottom: 5px;
+    font-style: italic;
+}
+
+.nama-tamu {
+    font-size: 1.8rem;
+    color: var(--gold-luxury);
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
 /* ==========================================================
    BAGIAN 2: KONTEN UTAMA & BACKGROUND PARALLAX
    ========================================================== */
-/* --- LATAR BELAKANG GABUNGAN UNTUK KONTEN UNDANGAN --- */
 #main-content {
-    /* Latar belakang gabungan: bg.jpg (biru polos) di atas, bg-tekstur-biru.jpg di bawah */
-    background: 
-        url('../assets/images/bg.jpg') center center / cover no-repeat,
-        url('../assets/images/bg-tekstur-biru.jpg') center center / cover no-repeat;
-    
-    /* Terapkan efek parallax (diam saat di-scroll) untuk kedua latar belakang */
-    background-attachment: fixed, fixed;
-    
+    background-image: url('../assets/images/bg.jpg'); /* Background dasar area utama */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efek diam saat di-scroll */
     position: relative;
-}
-
-/* Overlay gelap khusus untuk area konten agar teks emas/putih tetap terbaca jelas */
-#main-content::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(10, 25, 49, 0.75); /* Transparansi warna Navy */
-    z-index: 0;
 }
 
 /* Overlay gelap khusus untuk area konten agar teks tetap terbaca */
@@ -225,7 +236,41 @@ button, .btn-primary, .btn-outline {
     z-index: 1;
 }
 
-/* --- SECTION VIDEO INTRO --- */
+/* ==========================================================
+   KOTAK MEWAH (PEMBUNGKUS KONTEN DENGAN TEKSTUR BIRU)
+   ========================================================== */
+.box-mewah {
+    background-image: url('../assets/images/bg-tekstur-biru.jpg'); /* Tekstur di dalam kotak */
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(212, 175, 55, 0.4); /* Border emas transparan */
+    border-radius: 20px; /* Sudut melengkung */
+    padding: 60px 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); /* Efek bayangan agar mengambang */
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Lapisan gelap di dalam kotak agar isi konten jelas terbaca */
+.box-mewah::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10, 25, 49, 0.65); /* Warna navy agak transparan */
+    z-index: 0;
+}
+
+/* Memastikan semua isi kotak berada di atas lapisan gelap */
+.box-mewah > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================================
+   SECTION VIDEO INTRO
+   ========================================================== */
 .video-container {
     position: relative;
     width: 100vw;
@@ -251,11 +296,7 @@ button, .btn-primary, .btn-outline {
     position: relative;
     z-index: 2;
     text-align: center;
-    /*background: rgba(10, 25, 49, 0.6); 
-    padding: 30px 40px;
-    border-radius: 20px;
-    border: 1px solid rgba(212, 175, 55, 0.5); 
-    backdrop-filter: blur(5px);*/
+    padding: 10px 0; /* Hanya padding, tanpa kotak/background/border */
     
     /* Mulanya disembunyikan untuk efek animasi masuk */
     opacity: 0; 
@@ -279,7 +320,9 @@ button, .btn-primary, .btn-outline {
     transform: scaleY(-1); 
 }
 
-/* --- STRUKTUR LAYOUT & SPACING --- */
+/* ==========================================================
+   STRUKTUR LAYOUT & SPACING
+   ========================================================== */
 .section-pad {
     padding: 80px 20px;
 }
@@ -470,7 +513,7 @@ button, .btn-primary, .btn-outline {
     margin-bottom: 15px;
     border: 2px solid var(--gold-luxury);
     border-radius: 10px;
-    background: var(--white); /* Agar QR selalu bisa di-scan meskipun gambar transparan */
+    background: var(--white); /* Agar QR selalu bisa di-scan */
 }
 
 .no-rek {
@@ -499,7 +542,9 @@ button, .btn-primary, .btn-outline {
     margin-top: 20px;
 }
 
-/* --- RESPONSIVE DESIGN (Mobile) --- */
+/* ==========================================================
+   RESPONSIVE DESIGN (Tampilan HP)
+   ========================================================== */
 @media (max-width: 768px) {
     .cover-content h1 {
         font-size: 3.5rem;
@@ -528,5 +573,10 @@ button, .btn-primary, .btn-outline {
     
     #intro-nama-pasangan {
         font-size: 2.5rem !important;
+    }
+    
+    /* Menyesuaikan padding kotak mewah di layar kecil */
+    .box-mewah {
+        padding: 40px 15px;
     }
 }
