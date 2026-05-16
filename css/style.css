@@ -44,6 +44,10 @@ body {
     color: var(--gold-luxury);
 }
 
+.gold-light {
+    color: var(--gold-light);
+}
+
 .text-center {
     text-align: center;
 }
@@ -112,7 +116,9 @@ button, .btn-primary, .btn-outline {
     box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
 }
 
-/* --- BAGIAN 1: COVER (AMPLOP DIGITAL) --- */
+/* ==========================================================
+   BAGIAN 1: COVER (AMPLOP DIGITAL)
+   ========================================================== */
 .section-cover {
     height: 100vh;
     width: 100vw;
@@ -129,7 +135,7 @@ button, .btn-primary, .btn-outline {
     text-align: center;
 }
 
-/* Overlay agar teks lebih terbaca */
+/* Overlay agar teks di cover lebih terbaca */
 .section-cover::before {
     content: '';
     position: absolute;
@@ -179,34 +185,94 @@ button, .btn-primary, .btn-outline {
     margin-bottom: 30px;
 }
 
-/* --- STRUKTUR LAYOUT UTAMA --- */
+/* ==========================================================
+   BAGIAN 2: KONTEN UTAMA & BACKGROUND PARALLAX
+   ========================================================== */
+#main-content {
+    background-image: url('../assets/images/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efek diam saat di-scroll */
+    position: relative;
+}
+
+/* Overlay gelap khusus untuk area konten agar teks tetap terbaca */
+#main-content::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10, 25, 49, 0.75); /* Transparansi 75% */
+    z-index: 0;
+}
+
+/* Memastikan elemen teks ada di atas overlay gelap */
+#main-content section {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- SECTION VIDEO INTRO --- */
+.video-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh; /* Memenuhi tinggi layar */
+    overflow: hidden;
+    background-color: var(--navy-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#motion-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Video menutupi layar secara proporsional */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.video-overlay {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    background: rgba(10, 25, 49, 0.6); 
+    padding: 30px 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.5); 
+    backdrop-filter: blur(5px);
+    
+    /* Mulanya disembunyikan untuk efek animasi masuk */
+    opacity: 0; 
+    transform: scale(0.9);
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+.video-overlay.show-overlay {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.ornament-intro {
+    width: 180px;
+    max-width: 80%;
+    margin: 10px auto;
+    display: block;
+}
+
+.flip-y {
+    transform: scaleY(-1); 
+}
+
+/* --- STRUKTUR LAYOUT & SPACING --- */
 .section-pad {
     padding: 80px 20px;
-    position: relative;
 }
 
 .container {
     max-width: 900px;
     margin: 0 auto;
-}
-
-.bg-pattern {
-    background-image: url('../assets/images/bg-tekstur-biru.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; /* Efek parallax sederhana */
-}
-
-.bg-pattern::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(10, 25, 49, 0.85); /* Menggelapkan pattern */
-}
-
-.bg-pattern .container {
-    position: relative;
-    z-index: 2;
 }
 
 .section-title {
@@ -255,7 +321,7 @@ button, .btn-primary, .btn-outline {
     background-image: url('../assets/images/frame-foto-gold.png');
     background-size: cover;
     background-position: center;
-    padding: 20px; /* Jarak agar foto pas di dalam bingkai */
+    padding: 20px;
     border-radius: 50%;
 }
 
@@ -329,7 +395,7 @@ button, .btn-primary, .btn-outline {
 .acara-card {
     flex: 1;
     min-width: 280px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(212, 175, 55, 0.3);
     padding: 30px;
     border-radius: 15px;
@@ -358,7 +424,7 @@ button, .btn-primary, .btn-outline {
     margin-top: 15px;
     font-weight: bold;
     color: var(--white);
-    white-space: pre-line; /* Membaca enter dari JS */
+    white-space: pre-line;
 }
 
 /* --- HADIAH DIGITAL --- */
@@ -390,6 +456,7 @@ button, .btn-primary, .btn-outline {
     margin-bottom: 15px;
     border: 2px solid var(--gold-luxury);
     border-radius: 10px;
+    background: var(--white); /* Agar QR selalu bisa di-scan meskipun gambar transparan */
 }
 
 .no-rek {
@@ -418,7 +485,7 @@ button, .btn-primary, .btn-outline {
     margin-top: 20px;
 }
 
-/* --- RESPONSIVE DESIGN (Untuk Layar HP) --- */
+/* --- RESPONSIVE DESIGN (Mobile) --- */
 @media (max-width: 768px) {
     .cover-content h1 {
         font-size: 3.5rem;
@@ -443,5 +510,9 @@ button, .btn-primary, .btn-outline {
     
     .ornament {
         width: 180px;
+    }
+    
+    #intro-nama-pasangan {
+        font-size: 2.5rem !important;
     }
 }
