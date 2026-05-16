@@ -8,7 +8,7 @@ const dataUndangan = {
     umum: {
         judulWeb: "The Wedding of ukik & nurul",
         deskripsiWeb: "Undangan Pernikahan ukik & nurul",
-        audioLatar: "assets/audio/lagu-background.mp3", // Path ke file lagu
+        audioLatar: "assets/audio/lagu.mp3", // Path ke file lagu
         putarOtomatis: true
     },
 
@@ -21,12 +21,12 @@ const dataUndangan = {
     // 3. DATA MEMPELAI
     mempelai: {
         pria: {
-            namaLengkap: "Ukik, S.T.",
-            namaPanggilan: "Ukik  ",
-            namaAyah: "Bpke ukik",
-            namaIbu: "Ibue ukik",
+            namaLengkap: "Okik Aris Setiawan, S.T.",
+            namaPanggilan: "Okik  ",
+            namaAyah: "Bpk. Heri Susanto",
+            namaIbu: "Ibu Nanik",
             foto: "assets/images/ukik.jpg",
-            instagram: "https://instagram.com/nuristiana010"
+           /* instagram: "https://instagram.com/nuristiana010" */
         },
         wanita: {
             namaLengkap: "Nurul Dwi Indah Istiana, S.M.",
@@ -34,7 +34,7 @@ const dataUndangan = {
             namaAyah: "Bpk. Ekhwan Sunarto",
             namaIbu: "Ibu Hariyatun",
             foto: "assets/images/nurul.jpg",
-            instagram: "https://instagram.com/nuristiana010"
+           /* instagram: "https://instagram.com/nuristiana010" */
         }
     },
 
@@ -42,8 +42,8 @@ const dataUndangan = {
     acara: {
         akad: {
             namaAcara: "Akad Nikah",
-            hariTanggal: "Senin, 03 Agustus 2026", // Teks ini yang akan dibaca pengunjung di layar
-            tanggalCountdown: "2026-08-03T08:00:00", // 🔥 INI UNTUK HITUNG MUNDUR (Format: YYYY-MM-DDTHH:mm:ss)
+            hariTanggal: "Minggu, 02 Agustus 2026", // Teks ini yang akan dibaca pengunjung di layar
+            tanggalCountdown: "2026-08-02T08:00:00", // 🔥 INI UNTUK HITUNG MUNDUR (Format: YYYY-MM-DDTHH:mm:ss)
             waktu: "08:00 WIB - 10:00 WIB",
             tempat: "Rumah Bapak Ekhwan Sunarto",
             alamatLengkap: "Dsn. Balongrejo, Ds. Balonggebang, RT 30, RW 10, Kec. Gondang ,Kab. Nganjuk, 64451",
@@ -52,7 +52,7 @@ const dataUndangan = {
         },
         resepsi: {
             namaAcara: "Resepsi Pernikahan",
-            hariTanggal: "Senin, 03 Agustus 2026",
+            hariTanggal: "Minggu, 02 Agustus 2026",
             waktu: "fleksibel",
             tempat: "Rumah Bapak Ekhwan Sunarto",
             alamatLengkap: "Dsn. Balongrejo, Ds. Balonggebang, RT 30, RW 10, Kec. Gondang ,Kab. Nganjuk, 64451",
