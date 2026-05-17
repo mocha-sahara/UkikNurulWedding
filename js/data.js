@@ -33,7 +33,7 @@ const dataUndangan = {
             namaPanggilan: "  Nurul",
             namaAyah: "Bpk. Ekhwan Sunarto",
             namaIbu: "Ibu Hariyatun",
-            foto: "assets/images/nurul1.jpeg",
+            foto: "assets/images/nurul10.jpeg",
             instagram: "https://instagram.com/nuristiana010" 
         }
     },
