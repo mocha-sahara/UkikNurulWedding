@@ -25,7 +25,7 @@ const dataUndangan = {
             namaPanggilan: "Okik  ",
             namaAyah: "Bpk. Heri Susanto",
             namaIbu: "Ibu Nanik",
-            foto: "assets/images/okik.png",
+            foto: "assets/images/okik1.jpeg",
             instagram: "https://instagram.com/nuristiana010" 
         },
         wanita: {
@@ -33,7 +33,7 @@ const dataUndangan = {
             namaPanggilan: "  Nurul",
             namaAyah: "Bpk. Ekhwan Sunarto",
             namaIbu: "Ibu Hariyatun",
-            foto: "assets/images/nurul.png",
+            foto: "assets/images/nurul1.jpeg",
             instagram: "https://instagram.com/nuristiana010" 
         }
     },
@@ -69,10 +69,10 @@ const dataUndangan = {
 
     // 6. GALERI FOTO (Array data foto prewedding)
     galeri: [
-        { path: "assets/images/gallery/galeri-1.jpg", altText: "Foto Prewedding 1" },
-        { path: "assets/images/gallery/galeri-2.jpg", altText: "Foto Prewedding 2" },
-        { path: "assets/images/gallery/galeri-3.jpg", altText: "Foto Prewedding 3" },
-        { path: "assets/images/gallery/galeri-4.jpg", altText: "Foto Prewedding 4" }
+        { path: "assets/images/gallery/g1.jpg", altText: "Foto Prewedding 1" },
+        { path: "assets/images/gallery/g2.jpg", altText: "Foto Prewedding 2" },
+        { path: "assets/images/gallery/g3.jpg", altText: "Foto Prewedding 3" },
+        { path: "assets/images/gallery/g4.jpg", altText: "Foto Prewedding 4" }
     ],
 
     // 7. HADIAH DIGITAL (Amplop Digital & Kirim Kado)
